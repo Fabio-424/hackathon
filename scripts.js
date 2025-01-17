@@ -8,33 +8,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalImages = images.length;
 
     
-    imagesContainer.style.width = `${100 * totalImages}%`;
+    
 
-   
+
     function updateCarousel() {
-        const offset = -currentIndex * (100 / totalImages);
+        const offset = -currentIndex * 100; 
         imagesContainer.style.transform = `translateX(${offset}%)`;
     }
 
-    
     prevButton.addEventListener("click", () => {
-        currentIndex = (currentIndex - 1 + totalImages) % totalImages; 
+        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
         updateCarousel();
     });
 
     
     nextButton.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % totalImages; 
+        currentIndex = (currentIndex + 1) % totalImages;
         updateCarousel();
     });
 
-
+ 
     const autoplayInterval = setInterval(() => {
         currentIndex = (currentIndex + 1) % totalImages;
         updateCarousel();
-    }, 5000); 
+    }, 5000);
 
-  
+   
     [prevButton, nextButton].forEach((btn) =>
         btn.addEventListener("click", () => clearInterval(autoplayInterval))
     );
